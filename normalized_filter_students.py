@@ -4,13 +4,13 @@ import seaborn as sns
 
 def get_student_counts(file_path):
     """
-    Retorna o total de alunos em escolas privadas, públicas e que não responderam em Fortaleza.
+   Returns the total number of students in private, public and non-respondent schools in Fortaleza.
 
-    Parâmetros:
-        file_path (str): Caminho para o arquivo CSV contendo os microdados do ENEM.
+Parameters:
+file_path (str): Path to the CSV file containing the ENEM microdata.
 
-    Retorno:
-        dict: Um dicionário com o total de alunos por tipo de escola.
+Returns:
+dict: A dictionary with the total number of students by school type.
     """
     # Leitura do arquivo CSV
     df = pd.read_csv(file_path, encoding='latin-1', sep=",")
@@ -29,14 +29,13 @@ def get_student_counts(file_path):
 
 def calculate_normalized_means(fortaleza_df):
     """
-    Calcula as médias normalizadas das notas dos alunos por tipo de escola em Fortaleza.
+  Calculates the normalized averages of student grades by school type in Fortaleza.
 
-    Parâmetros:
-        fortaleza_df (DataFrame): DataFrame filtrado contendo dados de Fortaleza.
+Parameters:
+fortaleza_df (DataFrame): Filtered DataFrame containing data from Fortaleza.
 
-    Retorno:
-        DataFrame: DataFrame com as médias normalizadas por tipo de escola.
-    """
+Returns:
+DataFrame: DataFrame with the normalized averages by school type.  """
     # Calculando as médias por tipo de escola
     grouped_means = fortaleza_df.groupby('TP_ESCOLA')[['NU_NOTA_CN', 'NU_NOTA_CH', 'NU_NOTA_LC', 'NU_NOTA_MT', 'NU_NOTA_REDACAO']].mean()
 
@@ -48,11 +47,10 @@ def calculate_normalized_means(fortaleza_df):
 
 def plot_normalized_means(normalized_means):
     """
-    Plota um gráfico comparando as médias normalizadas das notas por tipo de escola.
+  Plots a graph comparing the normalized means of grades by school type.
 
-    Parâmetros:
-        normalized_means (DataFrame): DataFrame contendo as médias normalizadas por tipo de escola.
-    """
+Parameters:
+normalized_means (DataFrame): DataFrame containing the normalized means by school type.  """
     # Transformando os dados para o formato longo
     long_df = normalized_means.melt(id_vars=['TP_ESCOLA'], var_name='Área de Conhecimento', value_name='Média Normalizada')
 
@@ -72,11 +70,10 @@ def plot_normalized_means(normalized_means):
 
 def plot_normalized_boxplot(fortaleza_df):
     """
-    Plota um boxplot das notas normalizadas por tipo de escola e área de conhecimento.
+    Plots a boxplot of normalized grades by school type and area of ​​knowledge.
 
-    Parâmetros:
-        fortaleza_df (DataFrame): DataFrame filtrado contendo dados de Fortaleza.
-    """
+Parameters:
+fortaleza_df (DataFrame): Filtered DataFrame containing data from Fortaleza.   """
     # Contando os alunos por tipo de escola
     counts = fortaleza_df['TP_ESCOLA'].value_counts()
 

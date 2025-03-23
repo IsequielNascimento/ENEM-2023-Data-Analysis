@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 
 def get_student_counts(file_path):
     """
-    Retorna o total de alunos em escolas privadas, públicas e que não responderam em Fortaleza.
+Returns the total number of students in private, public and non-respondent schools in Fortaleza.
 
-    Parâmetros:
-        file_path (str): Caminho para o arquivo CSV contendo os microdados do ENEM.
+Parameters:
+file_path (str): Path to the CSV file containing the ENEM microdata.
 
-    Retorno:
-        dict: Um dicionário com o total de alunos por tipo de escola.
+Returns:
+dict: A dictionary with the total number of students by school type.   
     """
     # Leitura do arquivo CSV
     df = pd.read_csv(file_path, encoding='latin-1', sep=",")
@@ -31,11 +31,10 @@ def get_student_counts(file_path):
 
 def plot_student_counts(student_counts):
     """
-    Plota um gráfico de barras comparando o total de alunos por tipo de escola.
+Plots a bar chart comparing total students by school type.
 
-    Parâmetros:
-        student_counts (dict): Um dicionário com o total de alunos por tipo de escola.
-    """
+Parameters:
+student_counts (dict): A dictionary of total students by school type.  """
     # Dados para o gráfico
     labels = list(student_counts.keys())
     counts = list(student_counts.values())
